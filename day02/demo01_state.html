@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var MyButton = React.createClass({
+            getInitialState(){
+                return {myValue:false}
+            },
+            handleClick(){
+                var nowValue = this.state.myValue;
+                // 状态的写操作
+                this.setState({myValue:!nowValue});
+            },
+            render(){
+                return <button onClick={this.handleClick}>
+                        {
+                            this.state.myValue?'开':'关'
+                        }
+                    </button>
+            },
+        })
+        ReactDOM.render(
+            <MyButton></MyButton>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>
