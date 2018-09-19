@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        // 父组件
+        var MyMain = React.createClass({
+            inputValue: '',
+            save(msg) {
+                // console.log('main收到了a的数据'+msg);
+                this.inputValue = msg;
+            },
+            getvalue(){
+                return this.inputValue;
+            },
+            render() {
+                return <div>
+                        <MyInput mysave={this.save}></MyInput>
+                        <MyButton avalue={this.getvalue}></MyButton>
+                    </div>
+            }
+        })
+        // 子组件
+        var MyInput = React.createClass({
+            handleChange() {
+                // 获取输入框的值
+                var inputVal = this.refs.myinput.value;
+                // 将值传递给父组件MyMain
+                this.props.mysave(inputVal);
+            },
+            render() {
+                return <input type="text" ref="myinput" onChange={this.handleChange}/>
+            }
+        })
+        // 子组件
+        var MyButton = React.createClass({
+            getValue() {
+                console.log(this.props.avalue)
+            },
+            render() {
+                return <button onClick={this.getValue}>点我</button>
+            }
+        })
+
+        ReactDOM.render(
+            <MyMain></MyMain>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var MyTest = React.createClass({
+            handleClick(){
+                console.log('btn is clicked');
+                console.log(this.refs.myInput.value);
+            },
+            render(){
+                return <div>
+                        <input type="text" ref="myInput"/>
+                        <button onClick={this.handleClick}>clickMe</button>
+                    </div>
+            }
+        });
+
+        ReactDOM.render(
+            <MyTest></MyTest>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        var MyInput = React.createClass({
+            render: function (){
+                return <div>
+                        <label>{this.props.tips}</label>
+                        {/*<input type="text" placeholder={this.props.myph}/>*/}
+                        <input type="text" placeholder={"请输入"+this.props.tips}/>
+                    </div>
+            }
+        })
+        var MyButton = React.createClass({
+            render: function (){
+                return <button>{this.props.btnName}</button>
+            }
+        })
+        var MyForm = React.createClass({
+            render: function() {
+                return <div>
+                        <MyInput tips="用户名" myph="请输入用户名"></MyInput>
+                        <br/>
+                        <MyInput tips="密码" myph="请输入密码"></MyInput>
+                        <br/>
+                        <MyButton btnName="登陆"></MyButton>
+                        <MyButton btnName="注册"></MyButton>
+                        <br/> 
+                    </div>
+            }
+        })
+        ReactDOM.render(
+            <MyForm></MyForm>,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>

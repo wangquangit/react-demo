@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+
+    <script type="text/babel">
+        var MySon = React.createClass({
+            score: 55,
+            render() {
+                return <h1>这是子组件</h1>
+            }
+        });
+        var MyParent = React.createClass({
+            handleClick(){
+                // 得到子组件的实例
+                console.log(this.refs.zhangsan.score);
+            },
+            render() {
+                return <div>
+                        <h1>这是父组件</h1>
+                        <button onClick={this.handleClick}>获取子组件的属性</button>
+                        <MySon ref="zhangsan"></MySon>
+                    </div>
+            }
+        });
+
+        ReactDOM.render(
+            <MyParent></MyParent>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

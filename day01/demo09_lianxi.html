@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var Row = React.createClass({
+            render: function () {
+                return <div>
+                    {
+                        React.Children.map(
+                            this.props.children,
+                            (child)=>{
+                                return child
+                            }
+                        )
+                    }
+                    </div>
+            }
+        })
+        var Col = React.createClass({
+            render: function(){
+                return <h2>{this.props.myTitle}</h2>
+            }
+        })
+
+        ReactDOM.render(
+            <Row>
+                <Col myTitle="这是第一列"></Col>
+                <Col myTitle="这是第二列"></Col>
+            </Row>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

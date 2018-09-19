@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        var MyHeader = React.createClass({
+            render: function (){
+                return <h1>这是页头</h1>
+            }
+        })
+        var MyFooter = React.createClass({
+            render: function (){
+                return <h1>这是页尾</h1>
+            }
+        })
+        var MyList = React.createClass({
+            render: function (){
+                return <h1>这是列表</h1>
+            }
+        })
+        var MyCart  = React.createClass({
+            render: function (){
+                return <div>
+                        <MyHeader></MyHeader>
+                        <MyList></MyList>
+                        <MyFooter></MyFooter>
+                    </div>
+            }
+        })
+        ReactDOM.render(
+            <MyCart></MyCart>,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>

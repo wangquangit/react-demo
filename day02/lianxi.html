@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var AComponent = React.createClass({
+            handleChange(){
+                // 获取输入框的值
+                var value = this.refs.myInput.value;
+                // 传递给Main(子->父)
+                this.props.funcSave(value);
+            },
+            render(){
+                return <input ref="myInput" onChange={this.handleChange} type="text"/>
+            }
+        });
+        var BComponent = React.createClass({
+            handleClick(){
+                // 获取main的值
+                var value = this.props.funcGet();
+                console.log('button取到的值为:'+value);
+            },
+            render(){
+                return <button onClick={this.handleClick}>clickMe</button>
+            }
+        });
+        var MainComponent = React.createClass({
+            myValue: '',
+            save(msg){
+                console.log('Main收到的数据为:'+msg);
+                // 保存数据
+                this.myValue = msg;
+            },
+            get(){
+                // 定义获取数据的方法
+                return this.myValue;
+            },
+            render(){
+                return <div>
+                        <AComponent funcSave={this.save}></AComponent>
+                        <BComponent funcGet={this.get}></BComponent>
+                    </div>
+            }
+        });
+        ReactDOM.render(
+            <MainComponent></MainComponent>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>
