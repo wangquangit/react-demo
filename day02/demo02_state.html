@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var NumAdd = React.createClass({
+            // 初始化状态
+            getInitialState() {
+                return {
+                    value:0
+                }
+            },
+
+            handleClick(){
+                // 读状态
+                var nowValue = this.state.value;
+                nowValue++;
+                // 写状态
+                this.setState({value:nowValue}, ()=>{
+                    console.log(this.state.value)
+                });
+            },
+
+            render(){
+                return <button onClick={this.handleClick}>
+                        {this.state.value}
+                    </button>
+            }
+        });
+
+        ReactDOM.render(
+            <NumAdd></NumAdd>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

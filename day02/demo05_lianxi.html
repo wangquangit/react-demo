@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+    // 此实例演示了周期性定时器
+        var MyComponent = React.createClass({
+            getInitialState(){
+                return {opacityValue:0};
+            },
+            componentDidMount(){
+                // 启动周期性的定时器,将状态的值进行修改
+                setInterval(() => {
+                    // 读取状态中当前的数据
+                    var nowValue = this.state.opacityValue;
+                    // 修改值
+                    nowValue += 0.01;
+                    // 边界值的判断
+                    if(nowValue >= 1){
+                        nowValue = 0;
+                    };
+                    // 写入到状态
+                    this.setState({opacityValue:nowValue});
+                },10);
+            },
+            render(){
+                return <h1 style={{opacity:this.state.opacityValue}}>hello lifecyle</h1>
+            },
+        });
+
+        ReactDOM.render(
+            <MyComponent></MyComponent>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>
