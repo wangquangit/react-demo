@@ -12,8 +12,21 @@
 <body>
     <div id="example"></div>
     <script type="text/babel">
+        // 此实例演示了for遍历方法
+        var MyList = React.createClass({
+            getInitialState(){
+                return {
+                    list:[100,200,300]
+                }
+            },
+            render(){
+                return <ul>
+                        {this.state.list.map((value,index)=>{return <li key={index}>{value}</li>})}
+                    </ul>
+            }
+        });
         ReactDOM.render(
-            <h1>Hello React</h1>,
+            <MyList></MyList>,
             document.getElementById('example')
         )
     </script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        // 此实例演示了条件判断:if
+        var MyList = React.createClass({
+            render(){
+                return <ul>
+                        <li>test01</li>
+                        <li>test02</li>
+                        <li>test03</li>
+                    </ul>
+            }
+        });
+        var MyCart = React.createClass({
+            getInitialState(){
+                return {isLogin:false}
+            },
+            render(){
+                return <div>
+                        <h1>这是购物车页面</h1>
+                        {/* && 只有两个条件都为真时才显示 */}
+                        {this.state.isLogin && <MyList></MyList>}
+                    </div>
+            },
+        });
+        ReactDOM.render(
+            <MyCart></MyCart>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

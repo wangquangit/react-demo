@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var MyCart = React.createClass({
+            getInitialState(){
+                return {isUserLogin:false}
+            },
+            checkLogin: function (isLogin) {
+                // console.log('购物测组件的checkLogin方法被调用了');
+                this.setState({isUserLogin:isLogin});
+                // console.log(this.state.isUserLogin);
+            },
+            render: function () {
+                return <div>
+                        <MyHeader myfunction={this.checkLogin}></MyHeader>
+                        {this.state.isUserLogin && 
+                        <ul>
+                            <li>商品1</li>
+                            <li>商品2</li>
+                            <li>商品3</li>
+                        </ul>}
+                    </div>
+            }
+        })
+        var MyHeader = React.createClass({
+            handleClick: function () {
+                console.log('btn is pressed!');
+                // 执行父组件给的方法
+                this.props.myfunction(true);
+            },
+            handleClickFalse(){
+                this.props.myfunction(false);
+            },
+            render: function () {
+                return <div>
+                        <h3>这是页头</h3>
+                        <button onClick={this.handleClick}>登陆</button>
+                        <button onClick={this.handleClickFalse}>登出</button>
+                    </div>
+            }
+        })
+        ReactDOM.render(
+            <MyCart></MyCart>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

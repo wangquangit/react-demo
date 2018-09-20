@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var ToDoBox = React.createClass({
+            getInitialState(){
+                return {
+                    list:[]
+                }
+            },
+            add(msg){
+                console.log('Box收到:',msg);
+                var nowList = this.state.list;
+                nowList.push(msg);
+                this.setState({list:nowList});
+                console.log(this.state.list);
+            },
+            render(){
+                return <div>
+                        <h1>待办事项列表</h1>
+                        <ToDoInput funcAdd={this.add}></ToDoInput>
+                        <ToDoList myList={this.state.list}></ToDoList>
+                    </div>
+            },
+        });
+        var ToDoInput = React.createClass({
+            handleClick(){
+                // 获取输入框的值
+                var myValue = this.refs.myinput.value;
+                // 将值传递给父组件
+                this.props.funcAdd(myValue);
+            },
+            render(){
+                return <div>
+                        <input type="text" ref="myinput"/>
+                        <button onClick={this.handleClick}>添加</button>
+                    </div>
+            },
+        });
+        var ToDoItem = React.createClass({
+            render(){
+                return <li><button onClick={this.delete}>删除</button> <span>{this.props.myContent}</span></li>
+            },
+        });
+        var ToDoList = React.createClass({
+            render(){
+                return <ul>
+                        {
+                            this.props.myList.map((value,index)=>{
+                                return <ToDoItem key={index} myContent={value}></ToDoItem>
+                            })
+                        }
+                    </ul>
+            },
+        });
+
+        ReactDOM.render(
+            <ToDoBox></ToDoBox>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        // 此实例演示了受控表单
+        var MyPhone = React.createClass({
+            getInitialState(){
+                return {myValue:'北京'};
+            },
+            handlerChangeAddress(event){
+                var nowValue = event.target.value;
+                // 状态的写入
+                this.setState({myValue: nowValue});
+                // console.log(nowValue);
+            },
+            render(){
+                return <form>
+                        {/* 解决方案一:将value属性改为defaultValue */}
+                        <input type="text" placeholder="请输入用户名" defaultValue="zhansaan"/>
+                        {/* 解决方案二:借助于状态来解决受控表单元素出现的问题 */}
+                        <input type="text" onChange={this.handlerChangeAddress} placeholder="请输入地址" value={this.state.myValue}/>
+                    </form>
+            },
+        });
+        ReactDOM.render(
+            <MyPhone></MyPhone>,
+            document.getElementById('example')
+        )
+    </script>
+</body>
+</html>
